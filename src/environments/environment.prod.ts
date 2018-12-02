@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  path:'https://studiq.herokuapp.com/api'
+  path:'https://customer-complaint-forum.herokuapp.com/api'
 };

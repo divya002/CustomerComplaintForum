@@ -123,11 +123,7 @@
                           [(ngModel)]="comment.text" #text="ngModel" required name="text" [ngStyle]="{'border':(submitted && comment.text=='') ? ' 3px solid red' : '' }"></textarea>
                       </div>
                     </div>
-                    <div *ngIf="comment.invalid && (comment.dirty) && submitted" class="alert alert-danger">
-                      <small *ngIf="comment.errors.required">
-                        This is required.
-                      </small>
-                    </div>
+                    
             
                   </div>
               </div>

@@ -12,9 +12,9 @@ import { Complain } from '../complain';
 export class ProfileComponent implements OnInit {
   type=localStorage.getItem('type');
   email=localStorage.getItem('email');
-  complainTableData: any[] = [];
-  complainPopupData: any[] = [];
-  popComment: any[] = [];
+  complainTableData= [];
+  complainPopupData=new Complain();
+  popComment= [];
   status="";
   submitted: boolean = false;
   complain = new Complain();

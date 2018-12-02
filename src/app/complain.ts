@@ -5,6 +5,7 @@ export class Complain {
     datecreated:Date=new Date();
     dateupdated:Date=new Date();
     status:string;
+    _id:string;
     comment:object[]=new Array();
     constructor(){
         this.email="";
@@ -14,5 +15,6 @@ export class Complain {
         this.dateupdated=null;
         this.status="Submitted";
         this.comment=[];  
+        this._id=""
     }
 }
