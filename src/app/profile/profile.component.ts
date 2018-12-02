@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
   submitComplain() {
     this.submitted = true;
     this.complain.email = localStorage.getItem('email');
+    delete this.complain._id;
     if (this.complain.email != "" && this.complain.heading != "" && this.complain.description != "") {
       this.complainService.postComplaint(this.complain)
         .subscribe((res) => {
@@ -85,17 +86,17 @@ export class ProfileComponent implements OnInit {
       .subscribe((res) => {
         var email=localStorage.getItem('email');
         var type=localStorage.getItem('type');
-        if(res.result!=[]){
+       
         if(type=="Agent")
         this.complainTableData = res.result;
         else{
-          this.complainTableData=res.result.filter((obj)=>{
+          var filterdata=res.result.filter((obj)=>{
             return(obj.email==email);
-          })
+          });
+          this.complainTableData=filterdata;
+          if(filterdata.length==0)
+          alert("No Complaints from You");
         }
-      }
-      else
-      alert("No Complaints from You");
       });
   };
   getSingleComplaint(id) {
