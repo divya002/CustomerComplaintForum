@@ -1,0 +1,43 @@
+<div class="parent">
+  <div class="form_login">
+    <form class="login-container" id="login">
+      <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 80px;
+        color: hsl(232, 22%, 20%);margin-bottom: 50px;"></i>
+
+      <div class="form-group loginfail" *ngIf="authService.hasError">Login Failed!!</div>
+      <div class="form-group">
+        <label for="username" style="display:none">User Name</label>
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-user" aria-hidden="true" style="font-size: 35px;
+        color: #fff"></i>
+          </div>
+          <div class="col-10">
+            <input [(ngModel)]="loginData.email" class="form-control" name="Email" placeholder="Email" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-key" aria-hidden="true" style="font-size: 35px;
+          color: #fff"></i>
+          </div>
+          <div class="col-10">
+            <input [(ngModel)]="loginData.password" class="form-control" name="password" placeholder="Password" type="password">
+          </div>
+        </div>
+      </div>
+      <div class="form-check" style="text-align:left;margin-bottom:15px;">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+      </div>
+      <button type="submit" (click)="post()" form="login" class="btn btn-primary" style="margin-bottom:15px;">Log In</button>
+
+      <div style="text-align:left">
+        <a href="/#/forget-password" style="font-size:13px;display:block;">Forget Password?</a>
+        <a href="/#/register" style="font-size:13px;display:block;">Create New Account?</a>
+      </div>
+    </form>
+  </div>
+</div>

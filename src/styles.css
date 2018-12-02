@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
+  font-family: Roboto, Arial, sans-serif !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.form-control {
+  padding: .1rem .75rem;
+  border-radius: .50rem;
+  height: 30px!important;
+}
+textarea.form-control{
+  height:auto !important;
+}
+
+.btn {
+  border-radius: 20px;
+  min-width: 120px;
+}
+
+.nomargin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.nopadding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.alert {
+  position: relative;
+  padding: .10rem 0.25rem;
+  margin-top: 5px;
+  margin-bottom: .10rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+.mat-datepicker-content {
+  background: linear-gradient(135deg, #a4125d 0%, #b7330a 50%, #240b25 63%, #050606 100%);
+  color:#fff;
+}
+.mat-calendar-body-cell-content{
+  color:#fff;
+}
+.mat-datepicker-content {
+  border-radius:20px!important;
+}

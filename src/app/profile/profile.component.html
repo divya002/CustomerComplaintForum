@@ -1,0 +1,143 @@
+<div class="container" style="margin-left:0;">
+  <button type="button" class="btn" (click)="addNew();">Add New</button>
+  <div class="addNewContainer" id="addNewComplain" [hidden]="flag==false">
+    <div class="form-group">
+      <div class="col-12 ">
+        <div class="row nomargin">
+          <label class="col-4 col-md-3 nopadding" for="heading">Complain Heading</label>
+          <div class="col-8 col-md-9 nopadding">
+            <input type="text" class="form-control" id="heading" aria-describedby="heading" placeholder="Enter Complain Title"
+              [(ngModel)]="complain.heading" #heading="ngModel" required name="heading" [ngStyle]="{'border':(submitted && complain.heading=='') ? ' 3px solid red' : '' }">
+          </div>
+        </div>
+        <div *ngIf="heading.invalid && (heading.dirty) && submitted" class="alert alert-danger">
+          <small *ngIf="heading.errors.required">
+            This is required.
+          </small>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-12 ">
+        <div class="row nomargin">
+          <label class="col-4 col-md-3 nopadding" for="description">Complain Description</label>
+          <div class="col-8 col-md-9 nopadding">
+            <textarea rows="5" class="form-control" id="description" aria-describedby="description" placeholder="Enter Complain Description"
+              [(ngModel)]="complain.description" #description="ngModel" required name="description" [ngStyle]="{'border':(submitted && complain.description=='') ? ' 3px solid red' : '' }"></textarea>
+          </div>
+        </div>
+        <div *ngIf="description.invalid && (description.dirty) && submitted" class="alert alert-danger">
+          <small *ngIf="description.errors.required">
+            This is required.
+          </small>
+        </div>
+
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-bottom:15px;" (click)="submitComplain();addNew();getComplaint();">Submit!</button>
+  </div>
+  <div class="container tablecontainer">
+    <h2>Customer Complain List</h2>
+    <!-- <p style="color:red;">Click on Corresponding Complaint Heading to Add Comment & View</p> -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Sr.No.</th>
+          <th *ngIf="type=='Agent'">Email</th>
+          <th>Heading</th>
+          <th>Date Created</th>
+          <th>Last Updated</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of complainTableData;let no=index;">
+          <td>{{no+1}}</td>
+          <td *ngIf="type=='Agent'">{{i.email}}</td>
+          <td>{{i.heading}}</td>
+          <td>{{i.datecreated}}</td>
+          <td>{{i.dateupdated}}</td>
+          <td>{{i.status}}</td>
+          <td>
+            <button type="button" class="btn" style="height: 30px;min-width: 30px;" data-toggle="modal" data-target="#myModal"
+              (click)="getSingleComplaint(i._id);openModal();">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+      </div>
+      <div class="backdrop" [ngStyle]="{'display':display}">
+      <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}" style="color:sblack">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="container popcontainer">
+                <h4 style="margin-bottom:10px;">{{complainPopupData.heading}}</h4>
+                <h6>Last Updated:<span style="color:green;padding-left:40px;">{{complainPopupData.dateupdated}}</span></h6>
+                <h6>Last Created:<span style="color:green;padding-left:40px;">{{complainPopupData.datecreated}}</span></h6>
+                <div class="form-group" *ngIf="type=='Agent'">
+                  <div class="col-12 ">
+                    <div class="row nomargin">
+                      <label class="col-4 col-md-3 nopadding" for="status">Status</label>
+                      <div class="col-8 col-md-9 nopadding">
+                        <select class="form-control" id="status" aria-describedby="status" 
+                          [(ngModel)]="status" #statusText="ngModel" required name="status">
+                          <option value='Accepted'>Accepted</option>
+                          <option value='Submitted'>Submitted</option>
+                          <option value='Working'>Working</option>
+                          <option value='Solved'>Solved</option>
+                          <option value=''>Select Status</option>
+                        </select>
+                      </div>
+                    </div>
+            
+                  </div>
+              </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width:6%;">No.</th>
+                      <th *ngIf="type=='Agent'"style="width:20%;">Email Id</th>
+                      <th style="width:50%;">Comments</th>
+                      <th style="width:24%;">Comment Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let comment of complainPopupData.comment;let i=index;">
+                      <td style="width:6%;">{{i+1}}</td>
+                      <td *ngIf="type=='Agent'" style="width:20%;">{{comment.createdby}}</td>
+                      <td style="width:50%;">{{comment.text}}</td>
+                      <td style="width:24%;">{{comment.creationdate}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="form-group" [hidden]="addcomment==false">
+                  <div class="col-12 ">
+                    <div class="row nomargin">
+                      <label class="col-4 col-md-3 nopadding" for="comment">Add Comment</label>
+                      <div class="col-8 col-md-9 nopadding">
+                        <textarea rows="2" class="form-control" id="text" aria-describedby="text" placeholder="Add Comment"
+                          [(ngModel)]="comment.text" #text="ngModel" required name="text" [ngStyle]="{'border':(submitted && comment.text=='') ? ' 3px solid red' : '' }"></textarea>
+                      </div>
+                    </div>
+                    <div *ngIf="comment.invalid && (comment.dirty) && submitted" class="alert alert-danger">
+                      <small *ngIf="comment.errors.required">
+                        This is required.
+                      </small>
+                    </div>
+            
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="onCloseHandled();addComment();getComplaint();" >Close</button>
+              <button type="button" class="btn btn-default" (click)="updateComplain(complainPopupData._id);" >Save</button>
+              <button type="button" class="btn btn-default" (click)="addComment();" >Add Comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>

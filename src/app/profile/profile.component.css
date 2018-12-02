@@ -1,0 +1,50 @@
+.addNewContainer {
+  padding: 20px;
+  margin: 10px 0 10px 0;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #d4d7ec;
+  height: auto;
+  min-height: 30%;
+}
+
+.tablecontainer {
+  padding: 20px;
+  margin: 10px 0 10px 0;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #d4d7ec;
+  height: auto;
+  min-height: 30%;
+  color: #2f2971;
+}
+
+.popcontainer {
+  padding: 20px;
+  margin: 10px 0 10px 0;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #d4d7ec;
+  height: 400px;
+  min-height: 30%;
+  color: #2f2971;
+  overflow: scroll;
+}
+
+label {
+  color: #352d2d;
+}
+
+.backdrop {
+  background-color: rgba(114, 44, 44, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #352d2d;
+  height: 100vh;
+}
+
+.modal-dialog {
+  max-width: 600px;
+}

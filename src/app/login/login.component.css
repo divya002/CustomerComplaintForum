@@ -1,0 +1,30 @@
+.login-container {
+  width: 350px;
+  height: 450px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #a4125d 0%, #b7330a 50%, #240b25 63%, #050606 100%);
+  opacity: 0.8;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+@media only screen and (max-width: 600px) {
+    .login-container {
+      width: auto;
+      height: 430px;
+    }
+  }
+.parent {
+    display: table;
+    height:100%;
+    margin:0 auto;
+ }
+ .form_login {
+    display: table-cell;
+    vertical-align: middle;
+ }
+ .loginfail{
+   font-size: 20px;
+   color:#fff;
+ }
+ 

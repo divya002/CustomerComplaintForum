@@ -1,0 +1,100 @@
+<div class="parent">
+  <div class="form_register">
+    <form class="register-container container" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm);" novalidate>
+      <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 2 3px;margin-bottom:20px;">
+        <span style="font-size:18px;color:#fff;">Register Credentials</span>
+        <div style="font-size:20px;color:#fff;">{{message}}</div>
+      </i>
+      
+      
+      
+      <div class="form-group" style="text-align:left">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="row nomargin">
+              <label class="col-4 col-md-5 nopadding" for="mobile">Mobile</label>
+              <div class="col-8 col-md-7 nopadding">
+                <input type="text" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Enter Primary Mobile" [(ngModel)]="user.mobile"
+                  #mobile="ngModel" required minlength="10" maxlength="10" name="mobile" [ngStyle]="{'border':(submitted && user.mobile=='') ? ' 3px solid red' : '' }"
+                  pattern="[0-9]*">
+                <small *ngIf="validmobile===false" style="color:#ef6a6a"> This number has already registered.
+                </small>
+              </div>
+            </div>
+            <div *ngIf="mobile.invalid && (mobile.dirty) && submitted" class="alert alert-danger">
+              <small *ngIf="mobile.errors.required">
+                This is required.
+              </small>
+              <small *ngIf="mobile.errors.pattern">
+                Only numbers allowed.
+              </small>
+              <small *ngIf="mobile.errors.minlength">
+                It should be 10 digits.
+              </small>
+              <small *ngIf="mobile.errors.maxlength">
+                It should be 10 digits.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="row nomargin">
+              <label class="col-4 col-md-5 nopadding" for="email">Email</label>
+              <div class="col-8 col-md-7 nopadding">
+                <input type="email" email="true" class="form-control" id="email" aria-describedby="email" placeholder="Enter Email" [(ngModel)]="user.email"
+                  #email="ngModel" required name="email" [ngStyle]="{'border':(submitted && user.email=='') ? ' 3px solid red' : '' }">
+                <small *ngIf="validemail===false" style="color:#ef6a6a"> This email has already registered.
+                </small>
+              </div>
+            </div>
+            <div *ngIf="email.invalid && (email.dirty) && submitted" class="alert alert-danger">
+              <small *ngIf="email.errors.required">
+                This is required.
+              </small>
+              <small *ngIf="email.errors?.email">
+                Email not valid.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+         
+      <div class="form-group" style="text-align:left">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="row nomargin">
+              <label class="col-4 col-md-5 nopadding" for="type">Type</label>
+              <select class="form-control col-8 col-md-7" id="type" aria-describedby="type"
+                [(ngModel)]="user.type" #type="ngModel" required name="type" [ngStyle]="{'border':(submitted && user.type=='') ? ' 3px solid red' : '' }">
+                <option value="" disabled selected>Select Option</option>
+                <option *ngFor="let usertype of types" [value]="usertype">{{usertype}}</option>
+              </select>
+            </div>
+            <div *ngIf="type.invalid && (type.dirty) && submitted" class="alert alert-danger">
+              <small *ngIf="type.errors.required">
+                This is required.
+              </small>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="row nomargin">
+              <label class="col-4 col-md-5 nopadding" for="password">Enter Password</label>
+              <input type="password" class="form-control col-8 col-md-7" id="password" aria-describedby="password" placeholder="Enter AlpaNumeric with Special Character"
+                [(ngModel)]="user.password" #password="ngModel" required name="password" [ngStyle]="{'border':(submitted && user.password=='') ? ' 3px solid red' : '' }">
+            </div>
+            <div *ngIf="password.invalid && (password.dirty ) && submitted" class="alert alert-danger">
+              <small *ngIf="password.errors.required">
+                This is required.
+              </small>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="float:right">
+      <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">Register!</button>
+    </div>
+    </form>
+  </div>
+</div>
