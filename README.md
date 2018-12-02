@@ -1,6 +1,6 @@
 # CustomerComplaintForum
 
-Deployed at @complaintforum.surge.sh
+Deployed at http://complaintforum.surge.sh/#/login
 
 ## Development server
 
